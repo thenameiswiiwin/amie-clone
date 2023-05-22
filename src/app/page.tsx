@@ -17,8 +17,10 @@ export default function Homepage() {
           </ul>
         </div>
         <div className="sticky top-0 flex h-screen w-full items-center">
-          <div className="aspect-square w-full rounded-2xl bg-gray-100">
-            Div Col
+          <div className="relative aspect-square w-full rounded-2xl bg-gray-100">
+            {Features.map((feature) => (
+              <feature.card key={feature.id} />
+            ))}
           </div>
         </div>
       </div>
