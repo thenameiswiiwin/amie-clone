@@ -1,3 +1,4 @@
+import { FeatureTitle } from "@components/features/title";
 import { Hero } from "@components/Hero";
 
 const features = [
@@ -36,15 +37,13 @@ export default function Homepage() {
           <ul>
             {features.map((feature) => (
               <li key={feature.id}>
-                <p className="py-16 font-heading text-5xl text-gray-300">
-                  {feature.title}
-                </p>
+                <FeatureTitle>{feature.title}</FeatureTitle>
               </li>
             ))}
           </ul>
         </div>
         <div className="sticky top-0 flex h-screen w-full items-center">
-          <div className="rounded-2xl aspect-square w-full bg-gray-100">
+          <div className="aspect-square w-full rounded-2xl bg-gray-100">
             Div Col
           </div>
         </div>
