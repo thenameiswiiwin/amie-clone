@@ -1,32 +1,6 @@
 import { FeatureTitle } from "@components/features/title";
 import { Hero } from "@components/Hero";
-
-const features = [
-  {
-    title: "Use your calendar as a todo list",
-    id: "todo-list",
-  },
-  {
-    title: "Color your calendar to organize",
-    id: "colors",
-  },
-  {
-    title: "Instantly know if someone is available",
-    id: "availability",
-  },
-  {
-    title: "Track what you listened to when",
-    id: "music",
-  },
-  {
-    title: "Send scheduling links guests love",
-    id: "scheduling-links",
-  },
-  {
-    title: "Always know what your team is up to",
-    id: "team",
-  },
-];
+import { Features } from "@lib/data";
 
 export default function Homepage() {
   return (
@@ -35,7 +9,7 @@ export default function Homepage() {
       <div className="flex w-full items-start gap-20">
         <div className="w-full py-[50vh]">
           <ul>
-            {features.map((feature) => (
+            {Features.map((feature) => (
               <li key={feature.id}>
                 <FeatureTitle>{feature.title}</FeatureTitle>
               </li>
