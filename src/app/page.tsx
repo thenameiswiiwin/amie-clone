@@ -1,6 +1,6 @@
-import { FeatureTitle } from "@components/features/title";
-import { Hero } from "@components/Hero";
-import { Features } from "@lib/data";
+import { FeatureTitle } from '@components/features/title';
+import { Hero } from '@components/Hero';
+import { Features } from '@lib/data';
 
 export default function Homepage() {
   return (
@@ -11,7 +11,7 @@ export default function Homepage() {
           <ul>
             {Features.map((feature) => (
               <li key={feature.id}>
-                <FeatureTitle>{feature.title}</FeatureTitle>
+                <FeatureTitle id={feature.id}>{feature.title}</FeatureTitle>
               </li>
             ))}
           </ul>
@@ -19,7 +19,7 @@ export default function Homepage() {
         <div className="sticky top-0 flex h-screen w-full items-center">
           <div className="relative aspect-square w-full rounded-2xl bg-gray-100">
             {Features.map((feature) => (
-              <feature.card key={feature.id} />
+              <feature.card id={feature.id} key={feature.id} />
             ))}
           </div>
         </div>
