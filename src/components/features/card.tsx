@@ -3,6 +3,7 @@
 import { SpotifyLogo } from '@components/logos/spotify';
 import { useFeatureStore } from '@stores/index';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 type FeatureCardProps = {
@@ -24,7 +25,9 @@ const FeatureCard = ({ id, gradient, children }: FeatureCardProps) => {
     <div
       className={clsx(
         'absolute inset-0 h-full w-full rounded-2xl transition-opacity',
-        inViewFeature === id ? 'active-card opacity-100' : 'opacity-0'
+        inViewFeature === id
+          ? 'active-card opacity-100'
+          : 'pointer-events-none opacity-0'
       )}
     >
       <div
@@ -69,6 +72,9 @@ export const Availability = ({ id }: CardPros) => {
 };
 
 export const Music = ({ id }: CardPros) => {
+  const fullscreenFeature = useFeatureStore((store) => store.fullscreenFeature);
+  const isFullscreen = fullscreenFeature === id;
+
   return (
     <FeatureCard id={id} gradient="from-[#f7fff5] to-[#adffd8]">
       <Image
@@ -76,26 +82,39 @@ export const Music = ({ id }: CardPros) => {
         width="100"
         height="100"
         alt="Song 1"
-        className="absolute left-1/2 top-1/2 mt-[calc(-160px_-_100px/2)] ml-[calc(-160px_-_100px/2)] rounded-xl shadow-lg"
+        className={clsx(
+          'absolute left-1/2 top-1/2 mt-[calc(-160px_-_100px/2)] ml-[calc(-160px_-_100px/2)] rounded-xl shadow-lg transition-transform',
+          isFullscreen ? 'scale-0' : 'scale-100'
+        )}
       />
       <Image
         src="/images/song-2.webp"
         width="130"
         height="130"
         alt="Song 2"
-        className="absolute left-1/2 top-1/2 ml-[calc(150px_-_130px/2)] mt-[calc(-50px_-_130px/2)] rounded-xl shadow-lg"
+        className={clsx(
+          'absolute left-1/2 top-1/2 ml-[calc(150px_-_130px/2)] mt-[calc(-50px_-_130px/2)] rounded-xl shadow-lg transition-transform',
+          isFullscreen ? 'scale-0' : 'scale-100'
+        )}
       />
       <Image
         src="/images/song-3.webp"
         width="160"
         height="160"
         alt="Song 3"
-        className="absolute left-1/2 top-1/2 ml-[calc(-80px_-_160px/2)] mt-[calc(120px_-_160px/2)] rounded-xl shadow-lg"
+        className={clsx(
+          'absolute left-1/2 top-1/2 ml-[calc(-80px_-_160px/2)] mt-[calc(120px_-_160px/2)] rounded-xl shadow-lg transition-transform',
+          isFullscreen ? 'scale-0' : 'scale-100'
+        )}
       />
-
-      <div className="absolute left-[44%] top-48 h-[150px] w-[72px] rounded-[96px] bg-[#1bd761] p-3 shadow-[0_14px_20px_0_rgba(0,128,60,.36)]">
-        <SpotifyLogo />
-      </div>
+      {!isFullscreen && (
+        <motion.div
+          layoutId="spotify-logo"
+          className="absolute left-[44%] top-48 h-[150px] w-[72px] rounded-[96px] bg-[#1bd761] p-3 shadow-[0_14px_20px_0_rgba(0,128,60,.36)]"
+        >
+          <SpotifyLogo />
+        </motion.div>
+      )}
     </FeatureCard>
   );
 };

@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 export default function Homepage() {
   const [scope, animate] = useAnimate();
   const fullscreenFeature = useFeatureStore((state) => state.fullscreenFeature);
-  const lastFullScreenFeature = useFeatureStore(
+  const lastFullscreenFeature = useFeatureStore(
     (state) => state.lastFullscreenFeature
   );
   const setFullscreenFeature = useFeatureStore(
@@ -26,11 +26,11 @@ export default function Homepage() {
           { duration: 0.3, delay: stagger(0.05) },
         ],
         [
-          `.visual-${lastFullScreenFeature}`,
+          `.visual-${lastFullscreenFeature}`,
           { opacity: 1, scale: 1, pointerEvents: 'auto' },
           { at: '<' },
         ],
-        ['.active-card .gradient', { opacity: 0, scale: 0.9 }, { at: '<' }],
+        ['.active-card .gradient', { opacity: 0, scale: 0 }, { at: '<' }],
         ['.active-card .show-me-btn', { opacity: 0 }, { at: '<' }],
         [
           '.back-to-site-btn',
@@ -46,11 +46,11 @@ export default function Homepage() {
           { duration: 0.3, delay: stagger(0.05) },
         ],
         [
-          `.visual-${lastFullScreenFeature}`,
+          `.visual-${lastFullscreenFeature}`,
           { opacity: 0, scale: 0.75, pointerEvents: 'none' },
           { at: '<' },
         ],
-        ['.active-card .gradient', { opacity: 0, scale: 0.9 }, { at: '<' }],
+        ['.active-card .gradient', { opacity: 1, scale: 1 }, { at: '<' }],
         [
           '.back-to-site-btn',
           { opacity: 0, y: '300px' },
@@ -59,7 +59,7 @@ export default function Homepage() {
         ['.active-card .show-me-btn', { opacity: 1 }],
       ]);
     }
-  }, [animate, fullscreenFeature, fullscreenFeature]);
+  }, [animate, fullscreenFeature, lastFullscreenFeature]);
 
   return (
     <div className="mx-auto max-w-6xl px-4">
