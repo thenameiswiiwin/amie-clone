@@ -1,6 +1,5 @@
 'use client';
 
-import { useFeatureStore } from '@stores/index';
 import clsx from 'clsx';
 import Image from 'next/image';
 
@@ -12,16 +11,11 @@ type VisualProps = {
   children: React.ReactNode;
 } & Props;
 
-const Visual = ({ id, children }: VisualProps) => {
-  const fullscreenFeature = useFeatureStore((state) => state.fullscreenFeature);
-
+const Visual = ({ children }: VisualProps) => {
   return (
     <div
       className={clsx(
-        'fixed inset-0 flex items-center justify-center transition-opacity',
-        fullscreenFeature === id
-          ? 'opacity-100'
-          : 'pointer-events-none opacity-0'
+        'fixed inset-0 flex items-center justify-center opacity-0 transition-opacity'
       )}
     >
       <div className="max-w-6xl px-4">{children}</div>
