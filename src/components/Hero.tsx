@@ -1,7 +1,7 @@
 export const Hero = () => {
   return (
     <section className="flex flex-col justify-center py-20">
-      <h1 className="mb-12 font-heading text-7xl font-extrabold">
+      <h1 className="mb-12 font-heading text-7xl font-semibold leading-[1.05em] tracking-[-.02em]">
         The joyful productivity app.
         <br />
         <span className="text-gray-300">

@@ -27,7 +27,7 @@ export const FeatureTitle = ({ id, children }: FeatureTitleProps) => {
     <h3
       ref={ref}
       className={clsx(
-        'py-16 font-heading text-5xl font-extrabold transition-colors',
+        'py-16 font-heading text-5xl font-semibold leading-[1.2em] transition-colors',
         isInView ? 'text-black' : 'text-gray-300'
       )}
     >
