@@ -31,6 +31,12 @@ export default function Homepage() {
           { at: '<' },
         ],
         ['.active-card .gradient', { opacity: 0, scale: 0.9 }, { at: '<' }],
+        ['.active-card .show-me-btn', { opacity: 0 }, { at: '<' }],
+        [
+          '.back-to-site-btn',
+          { opacity: 1, y: '0px' },
+          { at: '<', duration: 0.3 },
+        ],
       ]);
     } else {
       animate([
@@ -45,6 +51,12 @@ export default function Homepage() {
           { at: '<' },
         ],
         ['.active-card .gradient', { opacity: 0, scale: 0.9 }, { at: '<' }],
+        [
+          '.back-to-site-btn',
+          { opacity: 0, y: '300px' },
+          { at: '<', duration: 0.3 },
+        ],
+        ['.active-card .show-me-btn', { opacity: 1 }],
       ]);
     }
   }, [animate, fullscreenFeature, fullscreenFeature]);
@@ -58,7 +70,7 @@ export default function Homepage() {
         ))}
         <button
           onClick={() => setFullscreenFeature(null)}
-          className="fixed bottom-6 left-1/2 z-10 -translate-x-1/2"
+          className="back-to-site-btn fixed bottom-6 left-1/2 z-10 translate-y-[300%] -translate-x-1/2 rounded-full bg-black px-4 py-2 text-white opacity-0 shadow-lg"
         >
           Back to site
         </button>
