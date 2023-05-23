@@ -16,6 +16,9 @@ type CardPros = {
 
 const FeatureCard = ({ id, gradient, children }: FeatureCardProps) => {
   const inViewFeature = useFeatureStore((state) => state.inViewFeature);
+  const setFullscreenFeature = useFeatureStore(
+    (state) => state.setFullscreenFeature
+  );
 
   return (
     <div
@@ -26,7 +29,10 @@ const FeatureCard = ({ id, gradient, children }: FeatureCardProps) => {
       )}
     >
       {children}
-      <button className="absolute bottom-6 right-6 rounded-xl bg-black px-4 py-2 text-white shadow-lg">
+      <button
+        onClick={() => setFullscreenFeature(id)}
+        className="absolute bottom-6 right-6 rounded-xl bg-black px-4 py-2 text-white shadow-lg"
+      >
         Show me
       </button>
     </div>

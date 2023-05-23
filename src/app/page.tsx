@@ -7,7 +7,7 @@ export default function Homepage() {
     <div className="mx-auto max-w-6xl px-4">
       <Hero />
       {Features.map((feature) => (
-        <feature.visual key={feature.id} />
+        <feature.visual id={feature.id} key={feature.id} />
       ))}
       <div className="flex w-full items-start gap-20">
         <div className="w-full py-[50vh]">
