@@ -30,6 +30,7 @@ export default function Homepage() {
           { opacity: 1, scale: 1, pointerEvents: 'auto' },
           { at: '<' },
         ],
+        ['.active-card .gradient', { opacity: 0, scale: 0.9 }, { at: '<' }],
       ]);
     } else {
       animate([
@@ -43,6 +44,7 @@ export default function Homepage() {
           { opacity: 0, scale: 0.75, pointerEvents: 'none' },
           { at: '<' },
         ],
+        ['.active-card .gradient', { opacity: 0, scale: 0.9 }, { at: '<' }],
       ]);
     }
   }, [animate, fullscreenFeature, fullscreenFeature]);
@@ -71,7 +73,7 @@ export default function Homepage() {
             </ul>
           </div>
           <div className="sticky top-0 flex h-screen w-full items-center">
-            <div className="relative aspect-square w-full rounded-2xl bg-gray-100">
+            <div className="relative aspect-square w-full rounded-2xl bg-gray-100 [&:has(>_.active-card)]:bg-transparent">
               {Features.map((feature) => (
                 <feature.card id={feature.id} key={feature.id} />
               ))}

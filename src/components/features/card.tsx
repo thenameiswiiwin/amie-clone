@@ -23,11 +23,16 @@ const FeatureCard = ({ id, gradient, children }: FeatureCardProps) => {
   return (
     <div
       className={clsx(
-        'absolute inset-0 h-full w-full rounded-2xl bg-gradient-to-br transition-opacity',
-        gradient,
-        inViewFeature === id ? 'opacity-100' : 'opacity-0'
+        'absolute inset-0 h-full w-full rounded-2xl transition-opacity',
+        inViewFeature === id ? 'active-card opacity-100' : 'opacity-0'
       )}
     >
+      <div
+        className={clsx(
+          'gradient absolute inset-0 origin-bottom-left rounded-2xl bg-gradient-to-br',
+          gradient
+        )}
+      />
       {children}
       <button
         onClick={() => setFullscreenFeature(id)}
