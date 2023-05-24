@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useFeatureStore } from '@stores/index';
-import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { useFeatureStore } from "@stores/index";
+import clsx from "clsx";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
-import { SpotifyLogo } from './logos/spotify';
+import { SpotifyLogo } from "./logos/spotify";
 
 type Props = {
   id: string;
@@ -19,7 +19,7 @@ const Visual = ({ id, children }: VisualProps) => {
   return (
     <div
       className={clsx(
-        'pointer-events-none fixed inset-0 flex items-center justify-center opacity-0',
+        "pointer-events-none fixed inset-0 flex items-center justify-center opacity-0",
         `visual-${id}`
       )}
     >

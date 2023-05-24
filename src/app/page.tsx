@@ -1,11 +1,13 @@
-'use client';
+"use client";
 
-import { FeatureTitle } from '@components/features/title';
-import { Hero } from '@components/Hero';
-import { Features } from '@lib/data';
-import { useFeatureStore } from '@stores/index';
-import { stagger, useAnimate } from 'framer-motion';
-import { useEffect } from 'react';
+import { FeatureTitle } from "@components/features/title";
+import { Hero } from "@components/Hero";
+import { Features } from "@lib/data";
+import { useFeatureStore } from "@stores/index";
+import { useHidePageOverflow } from "@utils/toggle-page-overflow";
+import { useEscapePress } from "@utils/use-escape-press";
+import { stagger, useAnimate } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Homepage() {
   const [scope, animate] = useAnimate();
@@ -16,47 +18,53 @@ export default function Homepage() {
   const setFullscreenFeature = useFeatureStore(
     (state) => state.setFullscreenFeature
   );
+  const onEscapePress = () => {
+    if (fullscreenFeature) setFullscreenFeature(null);
+  };
+
+  useEscapePress(onEscapePress);
+  useHidePageOverflow(!!fullscreenFeature);
 
   useEffect(() => {
     if (fullscreenFeature) {
       animate([
         [
-          '.feature-title',
-          { opacity: 0, x: '-200px' },
+          ".feature-title",
+          { opacity: 0, x: "-200px" },
           { duration: 0.3, delay: stagger(0.05) },
         ],
         [
           `.visual-${lastFullscreenFeature}`,
-          { opacity: 1, scale: 1, pointerEvents: 'auto' },
-          { at: '<' },
+          { opacity: 1, scale: 1, pointerEvents: "auto" },
+          { at: "<" },
         ],
-        ['.active-card .gradient', { opacity: 0, scale: 0 }, { at: '<' }],
-        ['.active-card .show-me-btn', { opacity: 0 }, { at: '<' }],
+        [".active-card .gradient", { opacity: 0, scale: 0 }, { at: "<" }],
+        [".active-card .show-me-btn", { opacity: 0 }, { at: "<" }],
         [
-          '.back-to-site-btn',
-          { opacity: 1, y: '0px' },
-          { at: '<', duration: 0.3 },
+          ".back-to-site-btn",
+          { opacity: 1, y: "0px" },
+          { at: "<", duration: 0.3 },
         ],
       ]);
     } else {
       animate([
         [
-          '.feature-title',
-          { opacity: 1, x: '0px' },
+          ".feature-title",
+          { opacity: 1, x: "0px" },
           { duration: 0.3, delay: stagger(0.05) },
         ],
         [
           `.visual-${lastFullscreenFeature}`,
-          { opacity: 0, scale: 0.75, pointerEvents: 'none' },
-          { at: '<' },
+          { opacity: 0, scale: 0.75, pointerEvents: "none" },
+          { at: "<" },
         ],
-        ['.active-card .gradient', { opacity: 1, scale: 1 }, { at: '<' }],
+        [".active-card .gradient", { opacity: 1, scale: 1 }, { at: "<" }],
         [
-          '.back-to-site-btn',
-          { opacity: 0, y: '300px' },
-          { at: '<', duration: 0.3 },
+          ".back-to-site-btn",
+          { opacity: 0, y: "300px" },
+          { at: "<", duration: 0.3 },
         ],
-        ['.active-card .show-me-btn', { opacity: 1 }],
+        [".active-card .show-me-btn", { opacity: 1 }],
       ]);
     }
   }, [animate, fullscreenFeature, lastFullscreenFeature]);
